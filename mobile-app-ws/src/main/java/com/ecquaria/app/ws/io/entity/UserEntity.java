@@ -1,19 +1,37 @@
-package com.ecquaria.app.ws.shared.dto;
+package com.ecquaria.app.ws.io.entity;
 
 import java.io.Serializable;
 
-public class UserDto implements Serializable {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-	private static final long serialVersionUID = -222879592380499812L;
+@Entity(name = "users")
+public class UserEntity implements Serializable {
+
+	private static final long serialVersionUID = 7472137343537541177L;
+
+	@Id
+	@GeneratedValue
 	private long id;
+
+	@Column(nullable = false)
 	private String userId;
+
+	@Column(nullable = false, length = 50)
 	private String firstName;
+	@Column(nullable = false, length = 50)
 	private String lastName;
+	@Column(nullable = false, length = 100)
 	private String email;
-	private String password;
+	@Column(nullable = false)
 	private String encryptedPassword;
+
 	private String emailVerificationToken;
-	private Boolean emailVerificationStatus;
+
+	@Column(nullable = false, columnDefinition = "boolean default false")
+	private Boolean passwordemailVerificationStatus;
 
 	public long getId() {
 		return id;
@@ -55,14 +73,6 @@ public class UserDto implements Serializable {
 		this.email = email;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public String getEncryptedPassword() {
 		return encryptedPassword;
 	}
@@ -79,16 +89,12 @@ public class UserDto implements Serializable {
 		this.emailVerificationToken = emailVerificationToken;
 	}
 
-	public Boolean getEmailVerificationStatus() {
-		return emailVerificationStatus;
+	public Boolean getPasswordemailVerificationStatus() {
+		return passwordemailVerificationStatus;
 	}
 
-	public void setEmailVerificationStatus(Boolean emailVerificationStatus) {
-		this.emailVerificationStatus = emailVerificationStatus;
+	public void setPasswordemailVerificationStatus(Boolean passwordemailVerificationStatus) {
+		this.passwordemailVerificationStatus = passwordemailVerificationStatus;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
 }
